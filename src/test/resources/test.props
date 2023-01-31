@@ -1,0 +1,71 @@
+# product and run options
+
+productName = tropical_atl
+product = 8
+domain = 1
+priority = 1
+environment = development
+
+installFQP = /lustre/ucar_home/trop3d1/RegionalConus
+
+intervalFile = rsl.out.0000
+
+cycleDir = /lustre/ucar_home/trop3d1/nwprod/tropics/prod/${cycle}/wrfrun
+
+postWorkingDir = /lustre/ucar_home/trop3d1/nwprod/tropics/prod/${cycle}/postproc_${environment}
+
+
+# interval options
+
+startInterval = 0
+
+# Use totalIntervals = 7 when testing to see every grads script run
+#totalIntervals = 7
+totalIntervals = 121
+
+intervalDuration = 60
+
+intervalMonTimeout = 7200
+
+
+
+# grib options
+
+gribConvCondorRAM = 4096
+
+# 209715200 bytes is 200 MiB (megabytes, 1024-based)
+gribFileMinSize = 209715200
+
+
+# grads options
+
+gradsBaseDir = /lustre/opt/grads-2.0.2/
+gradsTemplatesDir = /lustre/ucar_home/trop3d1/grads/tropical_atl/${environment}
+gradsExec = /lustre/opt/grads-2.0.2/bin/grads
+gradsExecTimeout = 240
+
+# For xargs command issued by rcp-gradscondor, how many processors to use
+gradsProcessors = 26
+
+# RAM for Condor jobs, in megabytes
+gradsCondorRAM = 16384
+
+
+# publish settings
+
+publish = false
+publishDir = /output_files/tropical_atl/${cycle}/${priority}
+FOSRestURL = http://ro.forecastapi.vip.airdat.com:8080/rw-forecastStoreAPI/action
+
+
+# Logging
+
+# log level, everything from the level set and higher is shown
+# SEVERE  - complete failure, program terminated (highest value)
+# WARNING - fairly bad occurrance but program completed
+# INFO    - ordinary runtime information
+# CONFIG  -
+# FINE    -
+# FINER   - normal debugging output
+# FINEST  - verbose debugging output (lowest value)
+logLevel = FINEST
